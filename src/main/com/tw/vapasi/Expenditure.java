@@ -17,22 +17,20 @@ public class Expenditure {
   }
 
   public HashMap<String, Double> getApportionedExpense() {
-    double avgAmt = 0;
+    double avgAmt = amount / beneficiaries.length;
     boolean isSpenderABeneficiary = false;
     HashMap<String, Double> expenses = new HashMap<String, Double>();
-    for (String benefissiary : beneficiaries) {
-      if (benefissiary.equals(spender))
+
+    for (String beneficiary : beneficiaries) {
+      if (beneficiary.equals(spender)) {
         isSpenderABeneficiary = true;
+      }
     }
-    avgAmt = amount / beneficiaries.length;
 
-    if (!isSpenderABeneficiary)
-      avgAmt = amount / (beneficiaries.length - 1);
-
-    for (String benefissiary : beneficiaries) {
-      if (benefissiary.equals(spender))
+    for (String beneficiary : beneficiaries) {
+      if (beneficiary.equals(spender) && !isSpenderABeneficiary)
         continue;
-      expenses.put(benefissiary, avgAmt);
+      expenses.put(beneficiary, avgAmt);
     }
     return expenses;
   }
