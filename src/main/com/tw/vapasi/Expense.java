@@ -1,6 +1,5 @@
 package com.tw.vapasi;
 
-import javax.swing.*;
 import java.util.HashMap;
 
 //Understands expense calculations
@@ -18,13 +17,13 @@ class Expense {
     this.expenseType = expenseType;
   }
 
-  public String getSpender() {
+  /*public String getSpender() {
     return spender;
   }
 
   public String[] getBeneficiaries() {
-    return  beneficiaries;
-  }
+    return beneficiaries;
+  }*/
 
   public HashMap<String, Double> getApportionedExpense() {
     double avgAmt = amount / beneficiaries.length;
@@ -36,11 +35,11 @@ class Expense {
         isSpenderABeneficiary = true;
       }
     }
-    if(isSpenderABeneficiary) {
+    if (isSpenderABeneficiary) {
       System.out.println("Spender is a beneficiary");
       expenses.put(spender, -1 * (amount - avgAmt));
     }
-    if(!isSpenderABeneficiary) {
+    if (!isSpenderABeneficiary) {
       System.out.println("Spender is not a beneficiary");
       expenses.put(spender, -1 * amount);
     }
