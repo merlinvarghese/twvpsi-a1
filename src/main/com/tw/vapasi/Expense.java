@@ -17,13 +17,13 @@ class Expense {
     this.expenseType = expenseType;
   }
 
-  /*public String getSpender() {
+  public String getSpender() {
     return spender;
   }
 
   public String[] getBeneficiaries() {
     return beneficiaries;
-  }*/
+  }
 
   public HashMap<String, Double> getApportionedExpense() {
     double avgAmt = amount / beneficiaries.length;
