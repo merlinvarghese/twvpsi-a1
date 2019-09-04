@@ -1,10 +1,12 @@
-package com.tw.vapasi;
+ package com.tw.vapasi;
 
 import org.junit.jupiter.api.Test;
+
 import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestCompute {
+class TestCompute {
 
   @Test
   void expect100ForBandCandDForTaxiWhenAisSpender1() {
@@ -37,7 +39,7 @@ public class TestCompute {
   }
 
   @Test
-  void expect100ForBandCandDForTaxiWhenAisSpenderUsingCompute() {
+  void expect100ForBandCandDForTaxiWhenAisSpender() {
     Expense expense1 = new Expense("A", 300.0, new String[]{"B", "C", "D"}, "Taxi");
     Compute compute = new Compute();
     compute.addExpense(expense1);

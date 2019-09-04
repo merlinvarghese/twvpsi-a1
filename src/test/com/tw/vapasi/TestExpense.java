@@ -3,7 +3,7 @@ package com.tw.vapasi;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestExpense {
+class TestExpense {
   @Test
   void expect100ForAandBandCandDForTaxiWhenAIsSpender() {
     Expense expense = new Expense("A", 400.0, new String[]{"A", "B", "C", "D"}, "Taxi");
