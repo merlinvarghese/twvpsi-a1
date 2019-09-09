@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 //Understands expense calculations
-class Expense {
+final class Expense {
   private final String spender;
   private final double amount;
   private final ArrayList<String> beneficiaries;
@@ -36,5 +36,16 @@ class Expense {
       spenderExpense = -1 * (amount - amount / beneficiaries.size());
     }
     return spenderExpense;
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("Expense Details : \n")
+        .append("Spender : ").append(spender).append("\n")
+        .append("Amount : ").append(amount).append("\n")
+        .append("Beneficiaries : ").append(beneficiaries).append("\n")
+        .append("Expense Type : ").append(expenseType).append("\n");
+    return stringBuilder.toString();
   }
 }

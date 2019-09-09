@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 //Understands expense computations
-class Compute {
+class FinalSettlement {
 
   private ArrayList<Expense> expenseList = new ArrayList<>();
 
@@ -35,15 +35,17 @@ class Compute {
   }
 
   public static void main(String args[]) {
-    Compute computeObj = new Compute();
+    System.out.println(new ConsoleReader().readExpensesFromConsole());
+    /*
+    FinalSettlement finalSettlementObj = new FinalSettlement();
 
-    computeObj.addExpense(new Expense("A", 100.0, new String[]{"A", "B", "C", "D"}, "Snacks"));
-    computeObj.addExpense(new Expense("B", 500.0, new String[]{"C", "D"}, "Taxi"));
-    computeObj.addExpense(new Expense("D", 300.0, new String[]{"A", "B"}, "Bus"));
+    finalSettlementObj.addExpense(new Expense("A", 100.0, new String[]{"A", "B", "C", "D"}, "Snacks"));
+    finalSettlementObj.addExpense(new Expense("B", 500.0, new String[]{"C", "D"}, "Taxi"));
+    finalSettlementObj.addExpense(new Expense("D", 300.0, new String[]{"A", "B"}, "Bus"));
 
     System.out.println("Compute net expense");
-    System.out.println("Final HM " + computeObj.calculateNetExpense());
-    HashMap<String, Double> netExpenses = computeObj.calculateNetExpense();
+    System.out.println("Final HM " + finalSettlementObj.calculateNetExpense());
+    HashMap<String, Double> netExpenses = finalSettlementObj.calculateNetExpense();
 
 
     for (String person : netExpenses.keySet()) {
@@ -53,6 +55,6 @@ class Compute {
       } else {
         System.out.println(person + " gives " + expense);
       }
-    }
+    }*/
   }
 }
