@@ -1,10 +1,10 @@
 package com.tw.vapasi;
 
 import java.util.*;
+//Understands how to read input from console
+class ConsoleReader {
 
-public class ConsoleReader {
-
-  public List<Expense> readExpensesFromConsole() {
+  List<Expense> readExpensesFromConsole() {
     List<Expense> expenses = new ArrayList<Expense>();
     printIntroduction();
     while(hasMoreExpensesToAdd()) {
@@ -41,13 +41,11 @@ public class ConsoleReader {
     beneficiaries = beneficiaries.trim().replaceAll(",$", "");
     System.out.println("Beneficiary String after regex: " + beneficiaries);
     StringTokenizer tokenizer = new StringTokenizer(beneficiaries,",");
-    String[] parsedBeneficiaryTokens = new String[tokenizer.countTokens()];
-    System.out.println("Token count : " + parsedBeneficiaryTokens.length);
-    for(int i = 0; i < tokenizer.countTokens(); i++) {
-      parsedBeneficiaryTokens[i] = tokenizer.nextElement().toString();
+    List<String> parsedBeneficiaryTokens = new ArrayList<String>();
+    while(tokenizer.hasMoreTokens()) {
+      parsedBeneficiaryTokens.add(tokenizer.nextToken());
     }
-    Arrays.stream(parsedBeneficiaryTokens).forEach(token -> System.out.println(token));
-    return parsedBeneficiaryTokens;
+    return parsedBeneficiaryTokens.toArray(new String[parsedBeneficiaryTokens.size()]);
   }
 
   private boolean hasMoreExpensesToAdd() {

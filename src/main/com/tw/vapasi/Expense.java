@@ -2,7 +2,7 @@ package com.tw.vapasi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.List;
 
 //Understands expense calculations
 final class Expense {
@@ -19,13 +19,13 @@ final class Expense {
     this.expenseType = expenseType;
   }
 
-  HashMap<String, Double> apportionedExpense() {
+  List<Entry> apportionedExpense() {
     ArrayList<String> beneficiaryList = new ArrayList<String>(beneficiaries);
-    HashMap<String, Double> expenses = new HashMap<String, Double>();
-    expenses.put(spender, spenderExpense());
+    ArrayList<Entry> expenses = new ArrayList<Entry>();
+    expenses.add(new Entry(spender, spenderExpense()));
     beneficiaryList.remove(spender);
     for (String beneficiary : beneficiaryList) {
-      expenses.put(beneficiary, amount / beneficiaries.size());
+      expenses.add(new Entry(beneficiary, amount / beneficiaries.size()));
     }
     return expenses;
   }
