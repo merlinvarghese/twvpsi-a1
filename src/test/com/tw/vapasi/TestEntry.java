@@ -2,29 +2,21 @@ package com.tw.vapasi;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TestEntry {
   @Test
-  void expect100ForAandBandCandDForTaxiWhenAIsSpenderAndBeneficiary() {
-    Expense expense = new Expense("A", 400.0, new String[]{"A", "B", "C", "D"}, "Taxi");
-    assertTrue(expense.apportionedExpense().contains(new Entry("A", -300.0)));
-    assertTrue(expense.apportionedExpense().contains(new Entry("B", 100.0)));
-    assertTrue(expense.apportionedExpense().contains(new Entry("C", 100.0)));
-    assertTrue(expense.apportionedExpense().contains(new Entry("D", 100.0)));
+  void expectNotEqualsForDifferentEntries() {
+    Entry firstEntry = new Entry("A", 100.0);
+    Entry secondEntry = new Entry("B", 200.0);
+    assertFalse(firstEntry.equals(secondEntry));
   }
 
   @Test
-  void expect100ForBandCandDForTaxiWhenAisOnlySpender() {
-    Expense expense = new Expense("A", 300.0, new String[]{"B", "C", "D"}, "Taxi");
-    assertTrue(expense.apportionedExpense().contains(new Entry("B", 100.0)));
-    assertTrue(expense.apportionedExpense().contains(new Entry("C", 100.0)));
-    assertTrue(expense.apportionedExpense().contains(new Entry("D", 100.0)));
-  }
-
-  @Test
-  void expect0ForAForTaxiWhenAisSpenderAndTheOnlyBeneficiary() {
-    Expense expense = new Expense("A", 300.0, new String[]{"A"}, "Taxi");
-    assertTrue(expense.apportionedExpense().contains(new Entry("A", -0.0)));
+  void expectEqualsForSameEntries() {
+    Entry firstEntry = new Entry("A", 100.0);
+    Entry secondEntry = new Entry("A", 100.0);
+    assertTrue(firstEntry.equals(secondEntry));
   }
 }

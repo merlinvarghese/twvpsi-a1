@@ -2,21 +2,54 @@ package com.tw.vapasi;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class TestJournal {
+
   @Test
-  void expectNotEqualsForDifferentEntries() {
-    Entry firstEntry = new Entry("A", 100.0);
-    Entry secondEntry = new Entry("B", 200.0);
-    assertFalse(firstEntry.equals(secondEntry));
+  void expectExactPersonNamesForJournalEntries() {
+    ArrayList<Entry> list = new ArrayList<Entry>();
+    list.add(new Entry("A", 100.0));
+    list.add(new Entry("B", 200.0));
+    Journal journal = new Journal();
+    journal.addMultipleEntries(list);
+    Arrays.stream(journal.getParticipants()).forEach(e -> System.out.println("*" + e + "*,"));
+    assertArrayEquals(new String[]{"A","B"}, journal.getParticipants());
   }
 
   @Test
-  void expectEqualsForSameEntries() {
-    Entry firstEntry = new Entry("A", 100.0);
-    Entry secondEntry = new Entry("A", 100.0);
-    assertTrue(firstEntry.equals(secondEntry));
+  void expectNoPersonNamesForEmptyJournal() {
+    Journal journal = new Journal();
+    assertArrayEquals(new String[]{}, journal.getParticipants());
   }
+
+  @Test
+  void expect0ForAToGiveWhenJournalEmpty() {
+    Journal journal = new Journal();
+    assertEquals(0.0, journal.getPersonalExpense("A"));
+  }
+
+  @Test
+  void expect200ForBToGive() {
+    ArrayList<Entry> list = new ArrayList<Entry>();
+    list.add(new Entry("A", 100.0));
+    list.add(new Entry("B", 200.0));
+    Journal journal = new Journal();
+    journal.addMultipleEntries(list);
+    assertEquals(200.0, journal.getPersonalExpense("B"));
+  }
+
+  @Test
+  void expect100ForAToGet() {
+    ArrayList<Entry> list = new ArrayList<Entry>();
+    list.add(new Entry("A", -100.0));
+    list.add(new Entry("B", 200.0));
+    Journal journal = new Journal();
+    journal.addMultipleEntries(list);
+    assertEquals(-100.0, journal.getPersonalExpense("A"));
+  }
+
 }
